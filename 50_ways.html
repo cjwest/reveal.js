@@ -294,5 +294,35 @@
 						]
 					});
 					</script>
+					<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+function currentPageFormatter(event) {
+        var formattedStr;
+
+        if (event.indexh === 0) {
+                return "";
+        }
+
+        formattedStr = event.indexh;
+
+        if (event.indexv) {
+            formattedStr += "/" + event.indexv;
+        }
+
+        return formattedStr;
+    }
+
+    Reveal.addEventListener( 'ready', function( event ) {
+        $('<aside class="controls slide-number" style="display: block; left: 10px; height: 100px; width: 20px; left: initial;bottom: -80px; text-align: center; color: #000000; background-color: transparent"></aside>')
+            .text(currentPageFormatter(event))
+            .appendTo('.reveal.center');
+    } );
+
+    // Fires each time a new slide is activated
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        $(".slide-number").text(currentPageFormatter(event));
+    } );
+</script>
 				</body>
 				</html>
